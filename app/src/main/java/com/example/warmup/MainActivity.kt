@@ -1,16 +1,25 @@
+package com.example.warmup
+
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.*
 import com.example.warmup.Model.*
-import com.example.warmup.R
-import com.example.warmup.UserAdapter
-import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
+
+    private val gson = GsonBuilder()
+        .setLenient()
+        .registerTypeAdapter(
+            TeaserVideoResponse::class.java,
+            TeaserVideoDeserializer()
+        )
+        .create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         try {
             val obj = JSONObject(getJSONFromAssets()!!) // assert it must exist
-            val usersArray = obj.getJSONArray("users")
-            var gson = Gson()
+            Log.e("TEST", "obj : $obj")
+            val usersArray = obj.getJSONArray("tvShows")
+
             val data = gson.fromJson(usersArray.toString(), Array<UserModelClass>::class.java)
             for (i in 0 until usersArray.length()) {
                 val user = data[i]
@@ -47,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         val rvUsersList = findViewById<RecyclerView>(R.id.rvUsersList)
         rvUsersList.layoutManager = LinearLayoutManager(this)
         val itemAdapter = UserAdapter(this, usersList)
-        android.util.Log.e("SIZE", "" + usersList.size)
+        Log.e("TEST", "size : ${usersList.size}")
         rvUsersList.adapter = itemAdapter
     }
 
@@ -66,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             myUsersJSONFile.close()
             json = String(buffer, charset)
         } catch (ex: IOException) {
+            Log.e("TEST", "getJSONFromAssets() : ${ex.message}")
             ex.printStackTrace()
             return null
         }
