@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
             //exception
             e.printStackTrace()
         }
-        print(usersList.size)
         val rvUsersList = findViewById<RecyclerView>(R.id.rvUsersList)
         rvUsersList.layoutManager = LinearLayoutManager(this)
         val itemAdapter = UserAdapter(this, usersList)

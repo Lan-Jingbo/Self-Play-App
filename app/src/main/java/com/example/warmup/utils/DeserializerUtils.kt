@@ -6,8 +6,7 @@ import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 
 inline fun <reified T> JsonElement.deserializeObject(
-    context: JsonDeserializationContext?
-): T? {
+    context: JsonDeserializationContext?): T? {
     return try {
         context?.deserialize<T>(this, object : TypeToken<T>() {}.type)
     } catch (e: Exception) {

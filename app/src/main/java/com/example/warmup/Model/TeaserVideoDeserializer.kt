@@ -14,8 +14,7 @@ class TeaserVideoDeserializer: JsonDeserializer<TeaserVideoResponse> {
         json: JsonElement?,
         typeOfT: Type?,
         context: JsonDeserializationContext?
-    )=
-        when {
+    ) = when {
             json?.isJsonObject == true -> {
                 TeaserVideoResponse.TeaserVideoObject(
                     json.asJsonObject.deserializeObject(context!!)
@@ -26,5 +25,5 @@ class TeaserVideoDeserializer: JsonDeserializer<TeaserVideoResponse> {
                 TeaserVideoResponse.TeaserVideoString(json.asJsonPrimitive.asString)
 
             else -> throw IllegalStateException("Cannot parse $json")
-        }
+    }
 }
