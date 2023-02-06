@@ -1,11 +1,17 @@
 package com.example.warmup
 
 import android.os.Bundle
+import android.service.media.MediaBrowserService.BrowserRoot
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.*
 import com.example.warmup.Model.*
 import com.example.warmup.databinding.ActivityMainBinding
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.material.navigation.NavigationView
 import com.google.gson.GsonBuilder
 import org.json.JSONException
 import org.json.JSONObject
@@ -13,6 +19,15 @@ import java.io.IOException
 import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var constraintLayoutRoot: ConstraintLayout
+    private lateinit var exoPlayerView: PlayerView
+
+    private lateinit var simpleExoPlyaer: SimpleExoPlayer
+    private lateinit var mediaSource: MediaSource
+
+    private lateinit var urlType: URLType
+
 
     private val gson = GsonBuilder()
         .setLenient()
@@ -82,4 +97,8 @@ class MainActivity : AppCompatActivity() {
         }
         return json
     }
+}
+
+enum class URLType(var url: String) {
+    DASH(""), HLS("");
 }
