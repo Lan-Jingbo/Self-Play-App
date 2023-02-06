@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.*
 import com.example.warmup.Model.*
+import com.example.warmup.databinding.ActivityMainBinding
 import com.google.gson.GsonBuilder
 import org.json.JSONException
 import org.json.JSONObject
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         try {
             val obj = JSONObject(getJSONFromAssets()!!) // assert it must exist
             Log.e("TEST", "obj : $obj")
-            val usersArray = obj.getJSONArray("tvShows")
+            val usersArray = obj.getJSONArray("tvShows") // the name should be the same as json file header
 
             val data = gson.fromJson(usersArray.toString(), Array<UserModelClass>::class.java)
             for (i in 0 until usersArray.length()) {
