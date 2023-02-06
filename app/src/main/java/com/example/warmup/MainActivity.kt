@@ -1,13 +1,11 @@
 package com.example.warmup
 
 import android.os.Bundle
-import android.service.media.MediaBrowserService.BrowserRoot
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.*
 import com.example.warmup.Model.*
-import com.example.warmup.databinding.ActivityMainBinding
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.ui.PlayerView
@@ -46,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         try {
             val obj = JSONObject(getJSONFromAssets()!!) // assert it must exist
-            Log.e("TEST", "obj : $obj")
+            //Log.e("TEST", "obj : $obj")
             val usersArray = obj.getJSONArray("tvShows") // the name should be the same as json file header
 
             val data = gson.fromJson(usersArray.toString(), Array<UserModelClass>::class.java)
@@ -72,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         val rvUsersList = findViewById<RecyclerView>(R.id.rvUsersList)
         rvUsersList.layoutManager = LinearLayoutManager(this)
         val itemAdapter = UserAdapter(this, usersList)
-        Log.e("TEST", "size : ${usersList.size}")
+        //Log.e("TEST", "size : ${usersList.size}")
         rvUsersList.adapter = itemAdapter
     }
 
@@ -91,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             myUsersJSONFile.close()
             json = String(buffer, charset)
         } catch (ex: IOException) {
-            Log.e("TEST", "getJSONFromAssets() : ${ex.message}")
+            //Log.e("TEST", "getJSONFromAssets() : ${ex.message}")
             ex.printStackTrace()
             return null
         }
