@@ -91,18 +91,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="Show Url : "
+                android:text="Show URL : "
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/showurl"
+                android:id="@+id/showUrl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
-                tools:text="show url" />
+                tools:text="showurl" />
         </LinearLayout>
 
         <LinearLayout

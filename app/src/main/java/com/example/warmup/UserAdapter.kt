@@ -25,7 +25,7 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
         holder.type.text = item.type
         holder.teaserText.text = item.teaserText
         holder.teaserVideo.text = item.teaserVideo.toString()
-        holder.showurl.text = item.showurl
+        holder.showurl.text = item.showUrl
         holder.teaserImage.text = item.teaserImage.toString()
         holder.id.text = item.id
         holder.description.text = item.description
@@ -48,7 +48,7 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
         val type = view.findViewById<TextView>(R.id.type)
         val teaserText = view.findViewById<TextView>(R.id.teaserText)
         val teaserVideo = view.findViewById<TextView>(R.id.teaserVideo)
-        val showurl = view.findViewById<TextView>(R.id.showurl)
+        val showurl = view.findViewById<TextView>(R.id.showUrl)
         val teaserImage = view.findViewById<TextView>(R.id.teaserImage)
         val id = view.findViewById<TextView>(R.id.id)
         val description = view.findViewById<TextView>(R.id.description)

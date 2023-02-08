@@ -1,7 +1,7 @@
 package com.example.warmup
 
 import android.os.Bundle
-import android.util.Log
+import android.util.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.*
@@ -9,7 +9,6 @@ import com.example.warmup.Model.*
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.material.navigation.NavigationView
 import com.google.gson.GsonBuilder
 import org.json.JSONException
 import org.json.JSONObject
@@ -44,9 +43,8 @@ class MainActivity : AppCompatActivity() {
 
         try {
             val obj = JSONObject(getJSONFromAssets()!!) // assert it must exist
-            //Log.e("TEST", "obj : $obj")
+            Log.e("TEST", "obj : $obj")
             val usersArray = obj.getJSONArray("tvShows") // the name should be the same as json file header
-
             val data = gson.fromJson(usersArray.toString(), Array<UserModelClass>::class.java)
             for (i in 0 until usersArray.length()) {
                 val user = data[i]
@@ -54,12 +52,14 @@ class MainActivity : AppCompatActivity() {
                 val teaserText = user.teaserText
                 val teaserImage = user.teaserImage
                 val teaserVideo = user.teaserVideo
-                val showurl = user.showurl
+                val showurl = user.showUrl
                 val id = user.id
                 val description = user.description
                 val title = user.title
+
                 val videoDetail = UserModelClass(type, teaserText, teaserVideo, showurl, teaserImage,
                     id, description, title)
+
                 usersList.add(videoDetail)
             }
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         val rvUsersList = findViewById<RecyclerView>(R.id.rvUsersList)
         rvUsersList.layoutManager = LinearLayoutManager(this)
         val itemAdapter = UserAdapter(this, usersList)
-        //Log.e("TEST", "size : ${usersList.size}")
+        Log.e("TEST", "size : ${usersList.size}")
         rvUsersList.adapter = itemAdapter
     }
 
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             myUsersJSONFile.close()
             json = String(buffer, charset)
         } catch (ex: IOException) {
-            //Log.e("TEST", "getJSONFromAssets() : ${ex.message}")
+            Log.e("TEST", "getJSONFromAssets() : ${ex.message}")
             ex.printStackTrace()
             return null
         }
