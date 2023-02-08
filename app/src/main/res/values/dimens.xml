@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_space_small_all">14dp</dimen>
+    <dimen name="content_small_size">14dp</dimen>
+    <dimen name="content_big_size">60dp</dimen>
+</resources>
