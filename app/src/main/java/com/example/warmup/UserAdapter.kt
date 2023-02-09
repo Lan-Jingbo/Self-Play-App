@@ -15,7 +15,7 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.item_user_layout,
+                R.layout.item_user_layout, // which will be use in the mainActivity
                 parent,
                 false
             )
@@ -23,7 +23,6 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items.get(position)
         /*holder.type.text = item.type
         holder.teaserText.text = item.teaserText
         holder.teaserVideo.text = item.teaserVideo.toString()
@@ -31,7 +30,8 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
         holder.id.text = item.id
         holder.description.text = item.description*/
         //holder.teaserImage. = item.teaserImage?.alternativeImageUrl
-        Glide.with(context).load(item.teaserImage?.alternativeImageUrl).into(holder.teaserImage)
+        val item = items.get(position)
+        Glide.with(context).load(item.teaserImage?.alternativeImageUrl).into(holder.teaserImage) // Get the picture
         holder.title.text = item.title
     }
 

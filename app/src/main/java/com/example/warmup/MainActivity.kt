@@ -17,15 +17,6 @@ import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var constraintLayoutRoot: ConstraintLayout
-    private lateinit var exoPlayerView: PlayerView
-
-    private lateinit var simpleExoPlyaer: SimpleExoPlayer
-    private lateinit var mediaSource: MediaSource
-
-    private lateinit var urlType: URLType
-
-
     private val gson = GsonBuilder()
         .setLenient()
         .registerTypeAdapter(
@@ -46,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             Log.e("TEST", "obj : $obj")
             val usersArray = obj.getJSONArray("tvShows") // the name should be the same as json file header
             val data = gson.fromJson(usersArray.toString(), Array<UserModelClass>::class.java)
-            for (i in 0 until usersArray.length()) {
+            for (i in 0 until usersArray.length()) { // NO related to view presenting
                 val user = data[i]
                 val type = user.type
                 val teaserText = user.teaserText
