@@ -1,5 +1,5 @@
 package com.example.warmup
 
-class UserActivity {
+class PlayActivity {
 
 }
