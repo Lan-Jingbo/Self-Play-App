@@ -70,6 +70,11 @@ class MainActivity : AppCompatActivity() {
         val itemAdapter = UserAdapter(this, usersList)
         Log.e("TEST", "size : ${usersList.size}")
         rvUsersList.adapter = itemAdapter
+        itemAdapter.setOnItemClickListener(object: UserAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                Toast.makeText(this@MainActivity, "You click me, my number is $position!", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 

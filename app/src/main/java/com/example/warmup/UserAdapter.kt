@@ -14,14 +14,26 @@ import com.google.android.material.imageview.ShapeableImageView
 
 class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
     RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+
+    lateinit var templistener: onItemClickListener
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.item_user_layout, // which will be use in the mainActivity
                 parent,
                 false
-            )
+            ),
+            templistener
         )
+    }
+
+    interface onItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+        templistener = listener
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -47,9 +59,9 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View, mylistener: onItemClickListener) : RecyclerView.ViewHolder(view) {
 
-        // Holds the TextView that will add each item to
+        //Holds the TextView that will add each item to
 //        val type = view.findViewById<TextView>(R.id.type)
 //        val teaserText = view.findViewById<TextView>(R.id.teaserText)
 //        val teaserVideo = view.findViewById<TextView>(R.id.teaserVideo)
@@ -60,6 +72,10 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
         val teaserImage = view.findViewById<ShapeableImageView>(R.id.image_content)
         val title = view.findViewById<TextView>(R.id.tv_title)
 
-        
+        init {
+            view.setOnClickListener {
+                mylistener.onItemClick(adapterPosition)
+            }
+        }
     }
 }
