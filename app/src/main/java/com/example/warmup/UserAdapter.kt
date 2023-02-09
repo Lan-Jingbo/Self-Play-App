@@ -1,10 +1,12 @@
 package com.example.warmup
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.warmup.Model.*
@@ -45,7 +47,7 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         // Holds the TextView that will add each item to
 //        val type = view.findViewById<TextView>(R.id.type)
@@ -57,5 +59,7 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
 //        val description = view.findViewById<TextView>(R.id.description)
         val teaserImage = view.findViewById<ShapeableImageView>(R.id.image_content)
         val title = view.findViewById<TextView>(R.id.tv_title)
+
+        
     }
 }

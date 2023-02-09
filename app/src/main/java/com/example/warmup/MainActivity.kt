@@ -2,6 +2,7 @@ package com.example.warmup
 
 import android.os.Bundle
 import android.util.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.*
@@ -9,6 +10,7 @@ import com.example.warmup.Model.*
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.gson.GsonBuilder
 import org.json.JSONException
 import org.json.JSONObject
@@ -52,6 +54,11 @@ class MainActivity : AppCompatActivity() {
                     id, description, title)
 
                 usersList.add(videoDetail)
+                /*val navy = findViewById<ShapeableImageView>(R.id.image_content)
+                navy.setOnClickListener {
+                    Toast.makeText(this, "You will go to next page",
+                        Toast.LENGTH_SHORT).show()
+                }*/
             }
 
         } catch (e: JSONException) {
