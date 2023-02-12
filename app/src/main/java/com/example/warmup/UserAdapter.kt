@@ -74,7 +74,7 @@ class UserAdapter(val context: Context, val items: ArrayList<UserModelClass>) :
 
         init {
             view.setOnClickListener {
-                mylistener.onItemClick(adapterPosition)
+                mylistener.onItemClick(absoluteAdapterPosition)
             }
         }
     }

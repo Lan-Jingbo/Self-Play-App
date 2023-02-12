@@ -1,5 +1,6 @@
 package com.example.warmup
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.*
 import android.widget.Toast
@@ -18,6 +19,7 @@ import java.io.IOException
 import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
+
 
     private val gson = GsonBuilder()
         .setLenient()
@@ -65,14 +67,23 @@ class MainActivity : AppCompatActivity() {
             //exception
             e.printStackTrace()
         }
+
         val rvUsersList = findViewById<RecyclerView>(R.id.rvUsersList)
         rvUsersList.layoutManager = LinearLayoutManager(this)
         val itemAdapter = UserAdapter(this, usersList)
         Log.e("TEST", "size : ${usersList.size}")
         rvUsersList.adapter = itemAdapter
+
         itemAdapter.setOnItemClickListener(object: UserAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-                Toast.makeText(this@MainActivity, "You click me, my number is $position!", Toast.LENGTH_SHORT).show()
+
+                //Toast.makeText(this@MainActivity, "You click me, my number is ${position+1}!", Toast.LENGTH_SHORT).show()
+
+                val playIntent = Intent(this@MainActivity, PlayActivity::class.java)
+
+                playIntent.putExtra("INFO", usersList[position])
+
+                startActivity(playIntent)
             }
         })
     }

@@ -1,20 +1,21 @@
 package com.example.warmup.Model
 import android.util.Log
+import java.io.Serializable
 
 /*data class User( // very first layer
     val users: ArrayList<UserModelClass>
 )*/
 
-data class UserModelClass( // G Layer
-    val type: String?,
-    val teaserText: String?,
-    val teaserVideo: TeaserVideoResponse?,
-    val showUrl: String?,
-    val teaserImage: TeaserImage?,
-    val id: String?,
-    val description: String?,
-    val title: String,
-) {
+data class UserModelClass ( // G Layer
+    var type: String?,
+    var teaserText: String?,
+    var teaserVideo: TeaserVideoResponse?,
+    var showUrl: String?,
+    var teaserImage: TeaserImage?,
+    var id: String?,
+    var description: String?,
+    var title: String,
+) : Serializable {
     fun getTeaserVideo() = teaserVideo?.let { teaserVideoResponse ->
         when (teaserVideoResponse) {
             is TeaserVideoResponse.TeaserVideoString -> {
@@ -32,35 +33,35 @@ data class UserModelClass( // G Layer
 }
 
 data class TeaserVideo ( // First Layer
-    val preview: Preview?,
-    val url: String?,
-    val vrcontent: String?,
-    val ooyalapcode: String?,
-    val duration: Int?,
-    val hlsurl: String?,
-    val dashurl: String?,
-    val houseid: String?,
-    val masterrefid: String?,
-    val ooyalaid: String?,
-    val caption: String?,
-    val id: String?,
-    val title: String?,
-    val ciaKeywords: List<String>?,
-)
+    var preview: Preview?,
+    var url: String?,
+    var vrcontent: String?,
+    var ooyalapcode: String?,
+    var duration: Int?,
+    var hlsurl: String?,
+    var dashurl: String?,
+    var houseid: String?,
+    var masterrefid: String?,
+    var ooyalaid: String?,
+    var caption: String?,
+    var id: String?,
+    var title: String?,
+    var ciaKeywords: List<String>?,
+) : Serializable
 
 data class Preview ( // Second Layer
-    val id: String?,
-    val ratio: String?,
-    val alternativeImageUrl: String?,
-)
+    var id: String?,
+    var ratio: String?,
+    var alternativeImageUrl: String?,
+) : Serializable
 
 data class TeaserImage ( // First Layer
-    val id: String?,
-    val ratio: String?,
-    val alternativeImageUrl: String?,
-)
+    var id: String?,
+    var ratio: String?,
+    var alternativeImageUrl: String?,
+) : Serializable
 
-sealed class TeaserVideoResponse {
+sealed class TeaserVideoResponse : Serializable {
     data class TeaserVideoString(var value: String? = null) : TeaserVideoResponse()
     data class TeaserVideoObject(var value: TeaserVideo? = null) : TeaserVideoResponse()
 }
