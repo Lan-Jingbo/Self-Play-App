@@ -2,6 +2,9 @@ package com.example.warmup
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.warmup.Model.UserModelClass
@@ -24,17 +27,10 @@ class PlayActivity : AppCompatActivity() {
         val videoItself : TextView = findViewById(R.id.player_view)
         val caption : TextView = findViewById(R.id.caption)
 
-        /*val bundle : Bundle? = intent.extras
-        val heading = bundle!!.getString("title")
-        val describe = bundle.getString("description")
-        val capting = bundle.getString("caption")
-        val player = bundle.getString("video")*/
-
         title.text = video?.title
         description.text = video?.teaserText
         caption.text = video?.getTeaserVideo()?.caption
         videoItself.text = video?.type
-
     }
 
 }
